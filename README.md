@@ -3107,3 +3107,45 @@ php artisan config:cache        # Cache config untuk performance
 8. **API Integration** dengan payroll system
 
 Happy coding! Semoga aplikasi EL Presence bermanfaat! 🎯
+
+
+konsep aplikasi 
+rancangan aplikasi absensi karyawan berbasis web dengan kriteria berikut:
+1. Role User
+* Admin
+   * Login ke sistem
+   * Mengelola data karyawan (CRUD)
+   * Melihat laporan absensi per hari/bulan
+   * Export laporan ke Excel/PDF
+   * Mengatur jadwal libur (tabel holidays)
+   * Bisa pilih pembuatan record absensi: otomatis (by sistem Senin–Jumat) atau manual
+* Karyawan
+   * Login ke sistem (fitur ingat saya untuk memudahkan, old man friendly)
+   * Absensi 2x sehari:
+      * Absen Masuk (default jam 08:00 WITA)
+      * Absen Pulang (default jam 14:00 WITA)
+   * Jika absen masuk lewat dari 08:00 → status Terlambat
+   * Jika tidak absen sama sekali → status Alpa
+   * Bisa klik tombol Izin dengan input alasan (misal: sakit, urusan keluarga, dll)
+   * Bisa lihat riwayat absensi miliknya
+2. Database Design (Tabel Utama)
+* users (data login semua user)
+   * id, name, email, password, role (admin/karyawan), remember_token
+* employees (data karyawan)
+   * id, user_id, nama, jabatan, dll
+* attendances (data absensi harian)
+   * id, employee_id, date, time_in, time_out, status (Hadir, Terlambat, Izin, Alpa), notes
+* holidays (data hari libur)
+   * id, date, description
+3. Flow Absensi
+1. Sistem cek hari → jika Senin–Jumat → auto generate record absensi (kecuali ada di tabel holidays).
+2. Karyawan login → klik tombol Hadir atau Izin.
+   * Jika hadir lewat 08:00 → status Terlambat.
+   * Jika izin → wajib isi alasan.
+3. Saat jam pulang (14:00) → karyawan klik Absen Pulang.
+4. Jika karyawan tidak melakukan absen sama sekali → status otomatis Alpa.
+5. Admin bisa buka laporan → filter per hari/per bulan, export PDF/Excel.
+4. Tambahan Konsep
+* UI dibuat simple dan ramah orang tua (tombol besar, teks jelas, minim ribet).
+* Sistem mendukung login multi-user secara bersamaan.
+* Data absensi real-time tersimpan di database.
