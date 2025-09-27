@@ -1,7 +1,7 @@
 # 🚀 Panduan Instalasi Lengkap Laravel Attendance System
 
 ## 📋 Overview Project
-- **Nama Aplikasi**: `el_presence` atau sesuaikan dengan kemauan kalian misal KalselAttendanceSystem
+- **Nama Aplikasi**: `el-presence` atau sesuaikan dengan kemauan kalian misal KalselAttendanceSystem
 - **Framework**: Laravel 10
 - **Auth**: Laravel Breeze 1.19
 - **Styling**: Tailwind CSS 4.1 
@@ -48,10 +48,10 @@ npm -v
 cd C:\laragon\www
 
 # Buat project baru
-composer create-project laravel/laravel el_presence "10.*"
+composer create-project laravel/laravel el-presence "10.*"
 
 # Masuk ke folder project
-cd KalselAttendanceSystem
+cd el-presence
 ```
 
 ### 2.2 Setup Database
@@ -60,7 +60,7 @@ cd KalselAttendanceSystem
 3. Edit file `.env`:
 
 ```env
-APP_NAME="El Presence System"
+APP_NAME="EL Presence"
 APP_ENV=local
 APP_KEY=base64:your-app-key-here
 APP_DEBUG=true
@@ -108,9 +108,10 @@ php artisan tinker
 Di dalam tinker, ketik:
 ```php
 App\Models\User::create([
-    'name' => 'Admin System',
-    'email' => 'admin@gmail.com', 
-    'password' => bcrypt('password')
+    'name' => 'Admin EL Presence',
+    'email' => 'admin@elpresence.com',
+    'password' => bcrypt('password123'),
+    'role' => 'admin'
 ]);
 exit
 ```
@@ -131,7 +132,7 @@ rm -f tailwind.config.js postcss.config.js
 ### 4.2 Install Tailwind v4.1 & Font Awesome
 ```bash
 # Install Tailwind v4
-npm install @tailwindcss/cli@next
+npm install tailwindcss @tailwindcss/vite
 
 # Install Font Awesome
 npm install @fortawesome/fontawesome-free
@@ -227,7 +228,7 @@ Project akan jalan di: `http://127.0.0.1:8000`
 **Opsi 2: Pakai Laragon (Recommended)**
 1. Buka Laragon
 2. Klik kanan icon Laragon > **Apache** > **Sites Directory**
-3. Pastikan folder `el_presence` ada di sana
+3. Pastikan folder `el-presence` ada di sana
 4. Restart Laragon
 5. Buka browser ke: `http://el-presence.test`
 
@@ -241,8 +242,8 @@ Buka browser ke URL project kamu, seharusnya muncul welcome page Laravel.
 ### 7.2 Test Authentication
 1. Klik **Register** atau **Login**
 2. Login pakai admin yang udah dibuat:
-   - Email: `admin@gmail.com`
-   - Password: `password`
+   - Email: `admin@elpresence.com`
+   - Password: `password123`
 
 ### 7.3 Test Tailwind & Font Awesome
 Buat test page simple. Edit `resources/views/dashboard.blade.php`:
@@ -376,7 +377,7 @@ npm run dev
 
 ## 🎉 Selamat!
 
-Kalau semua step di atas berhasil, berarti project Laravel Attendance System kamu udah siap! 
+Kalau semua step di atas berhasil, berarti project EL Presence kamu udah siap! 
 
 **Next Steps:**
 - Bikin model & migration untuk Attendance
